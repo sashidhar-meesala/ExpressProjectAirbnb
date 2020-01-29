@@ -13,14 +13,21 @@ app.get('/', function (req, res) {
     })
   })
 
-  app.get('/login', function (req, res) {
-    res.render("Login")
+  app.get('/register', function (req, res) {
+    res.render("register",{
+      title:"User Registration",
+        headingInfo:"register now",
+    })
   })
 
 
   app.get('/roomlist', function (req, res) {
-    res.render("roomlist")
+    res.render("roomlist",{
+      title:"List of properties",
+        headingInfo:"Properties ready to rent",
+    })
   })
+
 
 
   const PORT =3000;
