@@ -1,4 +1,52 @@
-.boxes{
+body, html {
+    height: 100%;
+}
+.promotions{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0.3em;
+    padding: 0.3em;
+    margin:0.4em;
+    
 }
+.promotionsgriditem{
+    margin: 0.3em;
+    padding:0.4em;
+    background-color: rgb(255, 253, 249);
+}
+.fastfactsgrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 0.8em;
+    padding:0.2em;
+    margin-top: 0.4em;
+    margin-bottom: 3em;
+    background-color: cadetblue;
+}
+.fastfactsgriditem{
+    background-color: rgb(255, 253, 249);
+    padding:0.5em;
+}
+
+.coverphoto {
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .bookingform{
+      background-color: rgb(255, 253, 249);
+      color: black;
+  }
+
+  /* Place text in the middle of the image */
+  .covertext {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
