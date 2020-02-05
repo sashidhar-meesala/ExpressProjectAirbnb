@@ -20,11 +20,63 @@ app.get('/', function (req, res) {
     })
   })
 
-
-  app.get('/roomlist', function (req, res) {
-    res.render("roomlist",{
+  app.get('/explore', function (req, res) {
+    const places=[];
+    places.push(
+      {
+        imgURL:`/img/cover.jpg`,
+        title:`titleeeewww`,
+        price:100,
+        rating:3
+      });
+      places.push(
+        {
+          imgURL:`/img/cover.jpg`,
+          title:`titleeeewww`,
+          price:100,
+          rating:3
+  
+        });
+        places.push(
+          {
+            imgURL:`/img/cover.jpg`,
+            title:`titleeeewww`,
+            price:100,
+            rating:3
+    
+          });
+        
+          places.push(
+            {
+              imgURL:`/img/cover.jpg`,
+              title:`titleeeewww`,
+              price:100,
+              rating:3
+      
+            });
+        
+            places.push(
+              {
+                imgURL:`/img/cover.jpg`,
+                title:`titleeeewww`,
+                price:100,
+                rating:3
+        
+              });
+        
+              places.push(
+                {
+                  imgURL:`/img/cover.jpg`,
+                  title:`titleeeewww`,
+                  price:100,
+                  rating:3
+          
+                });
+                
+    res.render("explore",{
       title:"List of properties",
         headingInfo:"Properties ready to rent",
+        rooms:places
     })
   })
 
