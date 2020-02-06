@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,42 +14,53 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>{{title}}</title>
 </head>
+
 <body>
-        <header>
-            <ul>
-                <li>
-                     <img src="http://pluspng.com/img-png/airbnb-logo-png-airbnb-logo-1600.png" alt="Airbnb Logo PNG" style="width: 100%;
-  height: 30em;
-    background-position: center;
-    background-repeat: no-repeat;">
-                </li>
-                <li>
-                    <h2>Airbnb</h2>
-                </li>
-            </ul>
-        </header>
-        <nav>    
-                <ul>
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/login">Log in</a></li>
-                    <li><a href="/explore">Explore</a></li>
-                </ul>
-        </nav>
-        <main>
-                {{{body}}}
-        </main>
-        
+    <header class="headerbar">
+        <section>
+            <i class="fab fa-airbnb icon-4x"></i>
+        </section>
+        <section>
+            <h2>Airbnb</h2>
+        </section>
+    </header>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Log in</a></li>
+            <li><a href="/explore">Explore</a></li>
+        </ul>
+    </nav>
+    <main>
+        {{{body}}}
+
+
+
+    </main>
+
+    </section>
+
+    <footer class="footerbar">
+        <section>
+            <p> Airbnb &copy; All rights reserved</p>
+        </section>
+        <section class="iconsGrid">
+            <article class="iconsGridItem">
+                <i id="fb" class="fab fa-facebook-f"></i>
+            </article>
+            <article class="iconsGridItem">
+                <i id="inst" class="fab fa-instagram"></i>
+            </article>
+            <article class="iconsGridItem">
+                <i id="twitter" class="fab fa-twitter"></i>
+            </article>
+            <article class="iconsGridItem">
+                <i id="linkedin" class="fab fa-linkedin"></i>
+            </article>
         </section>
 
-        <footer>
-            <p style="padding-top: 2rem;font-size: 2rem;;"> Airbnb &copy; All rights reserved</p>
 
-        <section class="icons">
-            <i id="fb" class="fab fa-facebook-f"></i>
-            <i id="inst" class="fab fa-instagram"></i>
-            <i id="twitter" class="fab fa-twitter"></i>
-            <i id="linkedin" class="fab fa-linkedin"></i>
-        </section>
-        </footer>
+    </footer>
 </body>
+
 </html>
