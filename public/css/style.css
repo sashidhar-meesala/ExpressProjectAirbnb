@@ -5,10 +5,63 @@ body, html {
 
 /*styles for main handlebar*/
 
+
+
+/*stylong for header*/
 .headerbar{
-  background-color: black;
+  background-color: #FF5A5F;
   color: white;
+  padding-top: .5em;
+	padding-bottom: .5em;
+	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 0.8em;
 }
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+
+
+a {
+	text-decoration: none;
+}
+
+
+
+.logo {
+	margin: 0;
+	font-size: 1.45em;
+}
+
+.main-nav {
+	margin-top: 5px;
+
+}
+.logo a,
+.main-nav a {
+	padding: 10px 15px;
+	text-transform: uppercase;
+	text-align: center;
+	display: block;
+}
+
+.main-nav a {
+	font-size: .99em;
+}
+
+
+
+
+
+
 .promotions{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -16,6 +69,10 @@ body, html {
     padding: 0.3em;
     margin:0.4em;
     
+}
+.info{
+  background-color: #FF5A5F;
+  color: white;
 }
 
 .aboutus_info{
@@ -41,6 +98,7 @@ body, html {
     padding:0.5em;
 }
 
+/*styling for homepage hero and form*/
 .coverphoto {
 
     background-position: center;
@@ -52,8 +110,26 @@ body, html {
   .bookingform{
       background-color: rgb(255, 253, 249);
       color: black;
-      height: 80%;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      padding: 2em;
   }
+
+  .bookingform input[type="date" i],.banner-form input[type=text],.banner-form input[type=password]{
+    padding: 10px 7px;
+    border: 1px solid #EBEBEB;
+    border-radius: 4px ;
+    color:#888;
+    font-size: 0.8em;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    outline: none;
+  }
+
+  .bookingform label {
+    text-transform: uppercase;
+  }
+
+
 
   /* Place text in the middle of the image */
   .covertext {
@@ -84,8 +160,8 @@ body, html {
 .footerbar{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: rgb(0, 0, 0);
-  color: white;
+  background-color: #FF5A5F;
+  color: rgb(255, 255, 255);
   font-size: large;
   padding: 1em;
   margin-top: 1.2em;
@@ -97,11 +173,6 @@ body, html {
 }
 
 /* Styling for registration page*/
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, 
-pre, form, fieldset, input, textarea, p, blockquote, th, td { 
-  padding:0;
-  margin:0;}
-
 fieldset, img {border:0}
 
 ol, ul, li {list-style:none}
@@ -117,24 +188,6 @@ select {
   color: #4c4c4c;
 }
 
-p {
-  font-size: 12px;
-  width: 150px;
-  display: inline-block;
-  margin-left: 18px;
-}
-h1 {
-  font-size: 32px;
-  font-weight: 300;
-  color: #4c4c4c;
-  text-align: center;
-  padding-top: 10px;
-  margin-bottom: 10px;
-}
-
-html{
-  background-color: #ffffff;
-}
 
 .testbox {
   margin: 20px auto;
@@ -150,64 +203,21 @@ html{
   border: solid 1px #cbc9c9;
 }
 
-input[type=radio] {
+.testbox input[type=radio] {
   visibility: hidden;
 }
 
-form{
+.testbox form{
   margin: 0 30px;
 }
 
-label.radio {
-	cursor: pointer;
-  text-indent: 35px;
-  overflow: visible;
-  display: inline-block;
-  position: relative;
-  margin-bottom: 15px;
-}
 
-label.radio:before {
-  background: #000207;
-  content:'';
-  position: absolute;
-  top:2px;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-}
-
-label.radio:after {
-	opacity: 0;
-	content: '';
-	position: absolute;
-	width: 0.5em;
-	height: 0.25em;
-	background: transparent;
-	top: 7.5px;
-	left: 4.5px;
-	border: 3px solid #ffffff;
-	border-top: none;
-	border-right: none;
-
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-input[type=radio]:checked + label:after {
-	opacity: 1;
-}
-
-hr{
+.testbox hr{
   color: #a9a9a9;
   opacity: 0.3;
 }
 
-input[type=text],input[type=password]{
+.testbox input[type=text],input[type=password]{
   width: 200px; 
   height: 39px; 
   -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px; 
@@ -230,7 +240,7 @@ input[type=password]{
 #icon {
   display: inline-block;
   width: 30px;
-  background-color: #000002;
+  background-color: #FF5A5F;
   padding: 8px 0px 8px 15px;
   margin-left: 15px;
   -webkit-border-radius: 4px 0px 0px 4px; 
@@ -287,6 +297,46 @@ a.button:hover {
 
 /*login*/
 
+/*login modal*/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  /*z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  /*width: 100%; /* Full width */
+  /*height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .login-page {
@@ -319,7 +369,7 @@ a.button:hover {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: #FF5A5F;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -330,7 +380,7 @@ a.button:hover {
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+ color: black;
 }
 .form .message {
   margin: 15px 0 0;
@@ -338,7 +388,7 @@ a.button:hover {
   font-size: 12px;
 }
 .form .message a {
-  color: #4CAF50;
+  color: #FF5A5F;
   text-decoration: none;
 }
 .form .register-form {
@@ -376,4 +426,37 @@ a.button:hover {
 }
 .container .info span .fa {
   color: #EF3B3A;
+}
+
+
+
+
+
+
+
+
+
+@media (min-width: 769px) {
+	.header,
+	.main-nav {
+		display: flex;
+	}
+	.header {
+		flex-direction: column;
+		align-items: center;
+    	.header{
+		width: 80%;
+		margin: 0 auto;
+		max-width: 1150px;
+	}
+	}
+
+}
+
+@media (min-width: 1025px) {
+	.header {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
 }
