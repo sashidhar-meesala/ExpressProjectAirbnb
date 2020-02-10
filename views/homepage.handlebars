@@ -7,12 +7,13 @@
                 position: relative">
         <aside class="covertext">
             <form action="" class="bookingform">
-                <h3 style="margin-bottom: 0.4em;">Book unique places to stay and things to do.</h3>
-                <label for="where" class="formlabel">
+                <h3 style="margin-bottom: 0.5em; color:rgb(4, 97, 105); margin-bottom:1.2em">Book unique places to stay and things to do.</h3>
+                <hr style="color: rgb(4, 97, 105);">
+                <div class="form_element">
+                    <label for="where" class="formlabel">
                     Where
                 </label>
-                <br>
-                <select name="city">
+                     <select name="city">
                     <option value="toronto">Toronto</option>
                     <option value="geulph">Geulph</option>
                     <option value="brampton">Brampton</option>
@@ -20,15 +21,20 @@
                     <option value="montreal">Montreal</option>
                     <option value="niagara">Niagara</option>
                 </select>
-                <br>
-                <label for="checkin"> CHECK-IN</label>
-                <label for="checkout"> CHECK-OUT</label>
-                <input type="date" name="checkindate">
-                <input type="date" name="checkoutdate">
-                <br>
-                <label for="guests">Guests</label>
-                <br>
-                <select name="guestselect">
+                </div>
+                
+                <div class="form_element">
+                    <label for="checkin"> Check-in</label>
+                    <input type="date" name="checkindate">
+                </div>
+
+                <div class="form_element">
+                    <label for="checkout"> Check-out</label>
+                     <input type="date" name="checkoutdate">
+                </div>
+                 <div class="form_element">
+                     <label for="guests">Guests</label>
+                     <select name="guestselect">
                     <option value="one">1</option>
                     <option value="two">2</option>
                     <option value="three">3</option>
@@ -37,11 +43,8 @@
                     <option value="six">6</option>
                     <option value="sixplus">6+</option>
                 </select>
-                <br>
-                <button type="submit" class="searchButton"> Search</button>
-
-
-
+                 </div>
+                <button type="submit" class="btn"> Search</button>
             </form>
 
 
@@ -52,27 +55,27 @@
 
 </section>
 <section class="info">
-    <h1 class="heading">
+    <h3 class="heading" style="text-align: center; color:#6CD2DB">
         About Us
-    </h1>
+    </h3>
     <article style="text-align: center;">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/dA2F0qScxrI" frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </article>
-    <h4 class="aboutus_info">
-        Airbnb is one of the world’s largest marketplaces for unique, authentic places to stay and things to do,
+    <p class="aboutus_info" style="font-style: italic;">
+        "Airbnb is one of the world’s largest marketplaces for unique, authentic places to stay and things to do,
         offering over 7 million accommodations and 40,000 handcrafted activities, all powered by local hosts. An
         economic empowerment engine, Airbnb has helped millions of hospitality entrepreneurs monetize their spaces
         and their passions while keeping the financial benefits of tourism in their own communities. With more than
         half a billion guest arrivals to date, and accessible in 62 languages across 220+ countries and regions,
-        Airbnb promotes people-to-people connection, community and trust around the world.
-    </h4>
+        Airbnb promotes people-to-people connection, community and trust around the world."
+    </p>
 </section>
 
 
-<h1 class="heading">
+<h3 class="heading" style="text-align: center; color:#6CD2DB">
     Fast Facts
-</h1>
+</h3>
 <section class="fastfactsgrid">
     <article class="fastfactsgriditem">
         <h2 class="headingingrid">
@@ -81,7 +84,6 @@
         <p>
             Airbnb listings worldwide
         </p>
-
     </article>
     <article class="fastfactsgriditem">
         <h2 class="headingingrid">

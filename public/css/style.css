@@ -1,6 +1,10 @@
 body, html {
     height: 100%;
-    font-family: sans-serif;
+    margin: 0;
+    font-family: 'Zhi Mang Xing', cursive;
+    font-family: 'Zhi Mang Xing', cursive;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 /*styles for main handlebar*/
@@ -8,11 +12,10 @@ body, html {
 .headerbar{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: #FF5A5F;
-  color: rgb(255, 255, 255) !important;
+  background-color: #6CD2DB;
+  color: #FF375C !important;
   font-size: large;
   padding: 0.3em;
-  margin-top: 0.3em;
 }
 
 .navGrid{
@@ -32,9 +35,33 @@ a{
   color: white !important;
 }
 
+.logo{
+  color:  #FF375C !important;
+}
 
 
 
+.btn-center{
+  text-align: center
+}
+.btn{
+  border-radius: 5px;
+  width: auto;
+  min-width: 100px;
+  border: 0.1em solid rgb(236, 242, 243);
+  display: inline-block;
+  min-height: 40px;
+  line-height: 40px;
+  font-size: 13pt;
+  color: #fff;
+  background: #2cc5f3;
+  outline: 0;
+  box-shadow: none;
+  transition: .4s ease all;
+  padding: 0 1.5rem;
+  font-weight: lighter;
+  text-decoration: none;
+}
 
 
 .promotions{
@@ -43,34 +70,35 @@ a{
     grid-column-gap: 0.3em;
     padding: 0.3em;
     margin:0.4em;
+    font-family: 'Zhi Mang Xing', cursive;
+    font-size: large;
     
-}
-.info{
-  background-color: #FF5A5F;
-  color: white;
 }
 
 .aboutus_info{
   padding: 1em;
   margin: 1em;
+  font-family: 'Open Sans Condensed', sans-serif;
+  
 }
 .promotionsgriditem{
     margin: 0.3em;
     padding:0.4em;
-    background-color: rgb(255, 253, 249);
 }
 .fastfactsgrid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 0.8em;
+    grid-column-gap: 0.4em;
     padding:0.2em;
     margin-top: 0.4em;
     margin-bottom: 3em;
-    background-color: black;
+    
 }
 .fastfactsgriditem{
     background-color:white;
     padding:0.5em;
+    border-bottom: 1px double #6CD2DB;
+    
 }
 
 /*styling for homepage hero and form*/
@@ -83,25 +111,30 @@ a{
   }
   
   .bookingform{
-      background-color: rgb(255, 253, 249);
+      background-color: rgb(255, 255, 255);
       color: black;
       margin-top: 1em;
       margin-bottom: 1em;
       padding: 2em;
+      font-family: "Lato";
   }
 
   .bookingform input[type="date" i],.banner-form input[type=text],.banner-form input[type=password]{
+    margin-left: 0.9em;
     padding: 10px 7px;
-    border: 1px solid #EBEBEB;
+    border: 1px solid #6CD2DB;
     border-radius: 4px ;
-    color:#888;
-    font-size: 0.8em;
+    color:rgb(0, 0, 0);
+    font-size: 0.7em;
     font-family: "Roboto",Helvetica,Arial,sans-serif;
     outline: none;
   }
 
-  .bookingform label {
-    text-transform: uppercase;
+  
+
+  .form_element{
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 
 
@@ -131,7 +164,7 @@ a{
   background: #ffffff;
   border-radius: 0.6em;
   box-shadow: 0 0 21px 2px #142bfd1a;
-  padding: 1rem;
+  padding: 2rem;
   text-align: center;
   margin-bottom: 20px;
 } 
@@ -174,11 +207,12 @@ padding:2 rem;
 .footerbar{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: #FF5A5F;
+  background-color: #6CD2DB;
   color: rgb(255, 255, 255);
   font-size: large;
-  padding: 1em;
-  margin-top: 1.2em;
+  padding: 1.3em;
+  
+  
 }
 
 .iconsGrid{
@@ -193,20 +227,25 @@ ol, ul, li {list-style:none}
 
 :focus {outline:none}
 
-body,
+
 input,
 textarea,
 select {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   color: #4c4c4c;
+  border:1px solid #6CD2DB;
 }
 
 
 .testbox {
-  margin: 20px auto;
+  text-align: center;
+  margin-top: 10em ;
+  margin-bottom: 6em;
+  margin-left: 28em;
   width: 343px; 
-  height: 464px; 
+  height: auto; 
+  padding-bottom: 2em;
   -webkit-border-radius: 8px/7px; 
   -moz-border-radius: 8px/7px; 
   border-radius: 8px/7px; 
@@ -214,7 +253,7 @@ select {
   -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
   -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
   box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-  border: solid 1px rgb(250, 95, 101);
+  border: solid 1px #6CD2DB;
 }
 
 .testbox input[type=radio] {
@@ -225,9 +264,12 @@ select {
   margin: 0 30px;
 }
 
+.anch{
+  color: #6CD2DB;
+}
 
 .testbox hr{
-  color: rgb(250, 95, 101);
+  color: #6CD2DB;
   opacity: 0.3;
 }
 
@@ -254,7 +296,7 @@ input[type=password]{
 #icon {
   display: inline-block;
   width: 30px;
-  background-color: rgb(250, 95, 101);
+  background-color: #6CD2DB;
   padding: 8px 0px 8px 15px;
   margin-left: 15px;
   -webkit-border-radius: 4px 0px 0px 4px; 
@@ -264,18 +306,9 @@ input[type=password]{
   -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
   -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
   box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
-  border: solid 0px rgb(250, 95, 101);
+  border: solid 0px #6CD2DB;
 }
 
-.gender {
-  margin-left: 30px;
-  margin-bottom: 30px;
-}
-
-.accounttype{
-  margin-left: 8px;
-  margin-top: 20px;
-}
 
 .reg_button {
   font-size: 14px;
@@ -287,11 +320,10 @@ input[type=password]{
   text-align: center;
   text-decoration: none;
   height: auto; 
-
   -webkit-border-radius: 5px; 
   -moz-border-radius: 5px; 
   border-radius: 5px; 
-  background-color: #FF5A5F; 
+  background-color:#6CD2DB; 
   top: 0px;
   position: relative;
 }
@@ -353,6 +385,7 @@ input[type=password]{
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
+  margin-bottom: 10em;
 }
 .form {
   position: relative;
@@ -365,7 +398,7 @@ input[type=password]{
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Open Sans Condensed';
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -375,20 +408,7 @@ input[type=password]{
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #FF5A5F;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
+
 .form button:hover,.form button:active,.form button:focus {
  color: black;
 }
@@ -398,7 +418,7 @@ input[type=password]{
   font-size: 12px;
 }
 .form .message a {
-  color: #FF5A5F;
+  color: #6CD2DB;
   text-decoration: none;
 }
 .form .register-form {
@@ -435,11 +455,18 @@ input[type=password]{
   text-decoration: none;
 }
 .container .info span .fa {
-  color: #EF3B3A;
+  color: #6CD2DB;
 }
 
 
-
+.errors{
+  color: rgb(255, 77, 77);
+  font-family: 'Open Sans Condensed';
+  font-weight: lighter;
+  padding: 0.6em;
+  
+  
+}
 
 
 

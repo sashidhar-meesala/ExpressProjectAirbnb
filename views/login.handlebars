@@ -1,58 +1,22 @@
-
-    <div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class=" modal-content ">
-    <span class="close">&times;</span>
-   <div class="login-page">
+<div class="login-page">
     <div class="form">
     <form class="login-form" method="POST" action="/loginvalidation">
-      <h3 style="text-align: center;">Login for exclusive offfers</h3>
-      <input type="text"  placeholder="username" name="username"/>
-      <input type="password"  placeholder="password" name="password"/>
-
+    <p style="color: rgb(72, 80, 153);">Sign-in using Facebook or google</p>
+    <p>(or)</p>
+    <hr>
+      <h3 style="text-align: center; color:rgb(4, 97, 105); margin-bottom:1.2em" >Login Here For Deals</h3>
+      <input type="text"  placeholder="Enter Username" name="username"/>
+      <input type="password"  placeholder="Enter Password" name="password"/>
+        {{#each messages}}
+      <div class="errors">{{this}}</div>
+      {{/each}}
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
-      <button type="submit">login</button>
-      {{#each messages}}
-
-    <div class="errors">{{this}}</div>
-
-{{/each}}
+      <button type="submit" class="btn">login</button>
       <p class="message">Not registered? <a href="/register">Create an account</a></p>
     </form>
     </div>
 </div>
-  </div>
-
-</div>
 
 
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
