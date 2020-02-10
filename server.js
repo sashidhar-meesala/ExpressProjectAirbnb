@@ -19,6 +19,32 @@ app.get('/', function (req, res) {
         headingInfo:"login page lets get started",
     })
   })
+
+
+  app.post("/loginvalidation",(req,res)=>{
+
+    const errors= [];
+          console.log(req.body);
+        if(req.body.username=="")
+          {
+            errors.push("Sorry, you must enter a username");
+
+          }
+
+          if(req.body.password=="")
+          {
+            errors.push("Sorry, youmust enter a  password")
+          }
+
+
+          if(errors.length > 0)
+          {
+            res.render("form",{
+              messages : errors
+            })
+          }
+        })
+
   app.get('/register', function (req, res) {
     res.render("register",{
       title:"User Registration",
@@ -30,14 +56,14 @@ app.get('/', function (req, res) {
     const places=[];
     places.push(
       {
-        imgURL:`/img/cover.jpg`,
-        title:`titleeeewww`,
+        imgURL:`/img/1(5).jpg`,
+        title:``,
         price:100,
         rating:3
       });
       places.push(
         {
-          imgURL:`/img/cover.jpg`,
+          imgURL:`/img/1(7).jpg`,
           title:`titleeeewww`,
           price:100,
           rating:3
@@ -91,4 +117,4 @@ app.get('/', function (req, res) {
   const PORT =3000;
   app.listen(3000,()=>{
       console.log("webserver connected");
-  })
+  });

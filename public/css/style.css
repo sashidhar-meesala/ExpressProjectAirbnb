@@ -5,56 +5,31 @@ body, html {
 
 /*styles for main handlebar*/
 
-
-
-/*stylong for header*/
 .headerbar{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background-color: #FF5A5F;
-  color: white;
-  padding-top: .5em;
-	padding-bottom: .5em;
-	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-  border-radius: 5px;
-  margin-bottom: 0.8em;
-}
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  color: rgb(255, 255, 255) !important;
+  font-size: large;
+  padding: 0.3em;
+  margin-top: 0.3em;
 }
 
-
-
-
-a {
-	text-decoration: none;
+.navGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-content: flex-end;
 }
 
-
-
-.logo {
-	margin: 0;
-	font-size: 1.45em;
+.modal_button{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  cursor: pointer;
 }
 
-.main-nav {
-	margin-top: 5px;
-
-}
-.logo a,
-.main-nav a {
-	padding: 10px 15px;
-	text-transform: uppercase;
-	text-align: center;
-	display: block;
-}
-
-.main-nav a {
-	font-size: .99em;
+a{
+  color: white !important;
 }
 
 
@@ -142,19 +117,58 @@ a {
     color: white;
   }
 
-  .rommGrid{
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      padding:0.5em;
-  }
-
-.rommGridItem{
-    padding: 0.4em;
-    margin: 0.5em;
+  .places-block{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 0.2rem;
+    grid-row-gap: 0.2rem;
+    padding: 0 4em;  
 }
 
-.roomIMG{
-    height: 20em;
+.destination_x{
+  background-color:white;
+  margin: 1rem 1rem;
+  background: #ffffff;
+  border-radius: 0.6em;
+  box-shadow: 0 0 21px 2px #142bfd1a;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 20px;
+} 
+
+.content_x{
+  padding:0.45rem;
+}
+.content_x .p-heading{
+  font-weight: bolder;
+  font-size: 1.3em;
+  color: #0b4dad;
+}
+
+.content_x .heart-red{
+  color: red;
+}
+.content_x span{
+  color: grey;
+  font-size:0.9em;
+}
+
+.content_x .verified-box{
+  border: 1px solid #0b4dad;
+  border-radius: 0.3em;
+  background: #0b4dad;
+  color: white;
+  padding: 0.3em;
+}
+.box_info{
+display: grid;
+grid-template-columns:4fr 4fr;
+padding:2 rem;
+}
+
+.images{
+  max-width: 100%;
+  padding: 0.4rem;
 }
 
 .footerbar{
@@ -196,11 +210,11 @@ select {
   -webkit-border-radius: 8px/7px; 
   -moz-border-radius: 8px/7px; 
   border-radius: 8px/7px; 
-  background-color: #ebebeb; 
+  background-color: rgb(255, 255, 255); 
   -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
   -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
   box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-  border: solid 1px #cbc9c9;
+  border: solid 1px rgb(250, 95, 101);
 }
 
 .testbox input[type=radio] {
@@ -213,7 +227,7 @@ select {
 
 
 .testbox hr{
-  color: #a9a9a9;
+  color: rgb(250, 95, 101);
   opacity: 0.3;
 }
 
@@ -240,7 +254,7 @@ input[type=password]{
 #icon {
   display: inline-block;
   width: 30px;
-  background-color: #FF5A5F;
+  background-color: rgb(250, 95, 101);
   padding: 8px 0px 8px 15px;
   margin-left: 15px;
   -webkit-border-radius: 4px 0px 0px 4px; 
@@ -250,7 +264,7 @@ input[type=password]{
   -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
   -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
   box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
-  border: solid 0px #cbc9c9;
+  border: solid 0px rgb(250, 95, 101);
 }
 
 .gender {
@@ -263,31 +277,27 @@ input[type=password]{
   margin-top: 20px;
 }
 
-a.button {
+.reg_button {
   font-size: 14px;
   font-weight: 600;
   color: white;
-  padding: 6px 25px 0px 20px;
-  margin: 10px 8px 20px 0px;
+  padding: 5px;
   display: inline-block;
-  
+  width: 100%;
+  text-align: center;
   text-decoration: none;
-  width: 50px; height: 27px; 
+  height: auto; 
+
   -webkit-border-radius: 5px; 
   -moz-border-radius: 5px; 
   border-radius: 5px; 
-  background-color: #000207; 
-  -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
-  -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
-  box-shadow: 0 3px rgba(58,87,175,.75);
-  transition: all 0.1s linear 0s; 
+  background-color: #FF5A5F; 
   top: 0px;
   position: relative;
 }
 
-a.button:hover {
+.reg_button:hover {
   top: 3px;
-  background-color:#f4f5f8;
   color: black;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 

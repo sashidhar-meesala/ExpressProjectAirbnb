@@ -1,10 +1,21 @@
-<section class="rommGrid">
-{{#each rooms}}
-<article class="rommGridItem">
-    <p><img src="{{this.imgURL}}" class="roomIMG"alt="something"></p>
-    <p>{{this.title}}</p>
-    <p>{{this.price}}</p>
-    <p>{{this.rating}}</p>
-</article>
-{{/each}}
-</section>
+<div class="main-heading">
+    <h2>Top-Rated Places To Stay</h2>
+</div>
+
+<br>
+    <section class="places-block">
+        {{#each rooms}}
+        <article class="destination_x">
+            <p><img src="{{this.imgURL}}" class="images" alt="something"></p>
+            <div class="content_x">
+            </div>
+            <p class="p-heading">{{this.title}}</p><a href="#"><span class="heart-red">
+                        <i class="fas fa-heart"></i></span></a>
+            <p>${{this.price}}/night</p>
+            <p><i class="fa fa-star" aria-hidden="true"></i> {{this.rating}}(200) . Superhost<p></p>
+            <div class="btn-center">
+                        <a href="#" class="btn" title="book">Explore Now!</a>
+                    </div>
+        </article>
+        {{/each}}
+    </section>
