@@ -248,7 +248,7 @@ select {
 .testbox {
   text-align: center;
   margin-top: 10em ;
-  margin-bottom: 6em;
+  margin-bottom: 30em;
   margin-left: 28em;
   width: 343px; 
   height: auto; 
@@ -393,7 +393,7 @@ input[type=password]{
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
-  margin-bottom: 10em;
+  margin-bottom: 38em;
 }
 .form {
   position: relative;
@@ -567,6 +567,7 @@ input[type=password]{
    
   .videosection{
     grid-template-columns: 1fr;
+    grid-row-gap:0.8em;
   }
 
   .promotions{
@@ -574,12 +575,16 @@ input[type=password]{
   }
 
   .bookingform{
-    margin-left: 8em;
+    margin-left: 11em;
   }
    
   .covertext{
     top: 31%;
-   height: 65%;
+   height: 50%;
+  }
+
+  .coverpic{
+    min-height: 50vh !important;
   }
 
 
@@ -593,7 +598,7 @@ input[type=password]{
 }
 @media screen and (max-width:374px)  and (min-width:321px){
   #icon{
-    margin-right: 3px;
+    margin-right: 0px;
     
   }
 
