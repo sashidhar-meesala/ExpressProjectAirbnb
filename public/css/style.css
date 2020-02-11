@@ -68,6 +68,7 @@ a{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 0.3em;
+     grid-row-gap:0.4em;
     padding: 0.3em;
     margin:0.4em;
     font-family: 'Zhi Mang Xing', cursive;
