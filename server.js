@@ -94,7 +94,7 @@ app.get('/', function (req, res) {
 
     if(req.body.pwd=="")
     {
-      reg_errors.push("** You must enter your password!")
+      reg_errors.push("** Hey You must enter your password!")
     }
 
     if(req.body.pwd != "" && pwd_test.test(req.body.pwd)==false){
@@ -165,7 +165,7 @@ else {
   });
 
 
-  const PORT =3000;
+  const PORT =process.env.PORT||3000;
   app.listen(3000,()=>{
       console.log("webserver connected");
   });
