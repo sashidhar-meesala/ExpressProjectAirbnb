@@ -476,8 +476,16 @@ input[type=password]{
   
 }
 
+/*styling for dashboard page*/
 
+.dashboard_bio{ 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
+.bookings{
+   display: inline;
+}
 
 
 

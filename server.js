@@ -127,7 +127,17 @@ app.get('/', function (req, res) {
         room : model.getallListingRoom()
     })
   })
+  
+  app.get("/dashboard",(req,res)=>{
 
+    res.render("dashboard",{
+        title: "Dashboard Page",
+        headingInfo : "Dashboard Page"
+  
+    });
+  
+  
+  });
 
 
   const PORT =3000;
