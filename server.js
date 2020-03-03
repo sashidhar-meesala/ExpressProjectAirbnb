@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const exphbs  = require('express-handlebars');
-const model = require("./models/room");
-require('dotenv').config({path:"./config/keys.env"});
+//const model = require("./models/room");
+require('dotenv').config({path:'./config.env'});
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
@@ -10,16 +10,17 @@ const bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 //general controller
-/*const generalController=require("./controllers/general");
-const loginController= require("./controllers/login");
+const generalController=require("./controllers/general");
+/*const loginController= require("./controllers/login");
 const registerController= require("./controllers/register");
-const roomController=require("./controllers/rooms");
+const roomController=require("./controllers/rooms");*/
 
-//app.use('/',generalController);
-//app.use("/home",generalController);
-//app.use("/room/explore",roomController);
-//app.use("/login",loginController);
-//app.use("/register",registerController);*/
+app.use('/',generalController);
+/*
+app.use("/home",generalController);
+app.use("/room/explore",roomController);
+app.use("/login",loginController);
+app.use("/register",registerController);
 
 app.get('/', function (req, res) {
   res.render("homepage",{
@@ -183,7 +184,7 @@ app.get('/explore', function (req, res) {
       headingInfo:"Properties ready to rent",
       room : model.getallListingRoom()
   })
-})
+})*/
 
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
