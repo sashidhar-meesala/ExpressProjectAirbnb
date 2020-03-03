@@ -61,19 +61,19 @@ router.get('/register', function (req, res) {
 }
 else {
   
-    const accountSid = 'AC19666a3f4f178276f2a3c9fc67f0fe0b';
-    const authToken = '0217545a87c2ca07fd1c4acc793fbb20';
+    const accountSid = process.env.TWILIO_SID;
+    const authToken = process.env.TWILIO_TOKEN;
     const client = require('twilio')(accountSid, authToken);
     
     client.messages
       .create({
-         body: `welcome ${req.body.fname} ${req.body.lname} please check your Email :${req.body.email}`,
+         body: `welcome ${req.body.fname} ${req.body.lname} to airbnb we are happy to have you!!  please check your Email :${req.body.email}`,
          from: '+18474160457',
          to: `${req.body.phone}`
        })
       .then(messages => {
         console.log(messages.sid);
-        res.render("explore",{
+        res.render("dashboard",{
           title:"List of properties",
             headingInfo:"Properties ready to rent",
             room : model.getallListingRoom()
