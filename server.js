@@ -50,6 +50,9 @@ app.get('/', function (req, res) {
         messages : errors
       })
     }
+    else{
+      res.render("dashboard")
+    }
   })
 
 
