@@ -98,16 +98,38 @@ app.get('/', function (req, res) {
       reg_errors.push("** Password should contain be length of 8 , must contain at least 1 lowercase & 1 uppercase alphabetical character, 1 numeric and special character.")
     }
     
-
-
-
-
-    if(reg_errors.length > 0)
-    {
-      res.render("register",{
-        messages : reg_errors
+    if(reg_errors.length > 0 )
+  {
+  res.render("register",{
+      messages:reg_errors
+  })
+}
+else {
+  
+    const accountSid = 'AC19666a3f4f178276f2a3c9fc67f0fe0b';
+    const authToken = '0217545a87c2ca07fd1c4acc793fbb20';
+    const client = require('twilio')(accountSid, authToken);
+    
+    client.messages
+      .create({
+         body: `welcome ${req.body.fname} ${req.body.lname} please check your Email :${req.body.email}`,
+         from: '+18474160457',
+         to: `${req.body.phone}`
+       })
+      .then(messages => {
+        console.log(messages.sid);
+        res.render("explore",{
+          title:"List of properties",
+            headingInfo:"Properties ready to rent",
+            room : model.getallListingRoom()
+        })
       })
-    }
+      .catch((err)=>{
+          console.log(`Error ${err}`);
+      })
+}
+
+
   })
 
 
