@@ -1,5 +1,6 @@
 var express = require('express')
 var router = express.Router()
+const model = require("../models/room");
 router.get('/', function (req, res) {
     res.render("homepage",{
         title:"Home",

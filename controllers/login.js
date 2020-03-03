@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 
 router.get('/login', function (req, res) {
-    res.render("login",{
+    res.render("login/login",{
         title:"login",
         headingInfo:"login page lets get started",
     })
