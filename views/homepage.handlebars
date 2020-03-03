@@ -136,8 +136,31 @@
 
 </section>
 <section>
+  <div class="main-heading">
+    <h2>Featured Room</h2>
+    <p>Best and filtered ones only for you!!</p>
+  </div>
 
-    
+  <div class="places-block">
+     {{#each room}}
+    <div class="destination_x">
+      <img class="images" src="{{this.image}}" alt="image">
+      
+      <div class="content_x">
+        <span>{{this.title}}</span>
+        <p class="p-heading">Entire Guest House <span class="heart-red"><i class="fas fa-heart"></i></span>
+        </p>
+        <p>{{this.description}}</p>
+        <p>{{this.price}}</p>
+        <p> <i class="fa fa-star" aria-hidden="true"></i> 5(300+)<p>
+        <div class="btn-center">
+              <a href="#" class="btn" title="book">Book it Now!</a>
+        </div>
+      </div>
+
+      </div>
+ {{/each}}
+  </div>
 </section>
 <h3 class="heading" style="text-align: center; color:#6CD2DB"> Promotions</h3>
 <section class="promotions">
@@ -162,7 +185,7 @@
     </article>
 
     <article>
-        <img src="/img/cover4.jpg" alt="" style=" width: 100%;
+        <img src="/img/room14.jpg" alt="" style=" width: 100%;
   height: 25em;
     background-position: center;
     background-repeat: no-repeat;">
