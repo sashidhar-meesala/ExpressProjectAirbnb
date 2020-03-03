@@ -227,6 +227,9 @@ padding:2 rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+/*dashboard*/
+
+
 /* Styling for registration page*/
 fieldset, img {border:0}
 
@@ -478,14 +481,26 @@ input[type=password]{
 
 /*styling for dashboard page*/
 
-.dashboard_bio{ 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.dashboardBio_gridItem{ 
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 100;
+  font-style: oblique;
+  color: #000;
 }
 
-.bookings{
-   display: inline;
+.dashboard_heading{
+  text-align: center;
+  color: #0b4dad;
+  font-size: 3em;
 }
+
+.msg{
+text-align: center;
+color: #fa0951;
+}
+
+
 
 
 

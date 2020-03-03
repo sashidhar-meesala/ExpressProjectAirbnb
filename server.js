@@ -139,6 +139,18 @@ res.render("register",{
 }
 else {
 
+  const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const msg = {
+  to: `sashidharklu@gmail.com`,
+  from: 'sashidharklu@gmail.com',
+  subject: 'WELCOME TO AIRBNB',
+  text: 'We are happy to have you with us',
+  html: '<strong>thanks for the registering with us . we will unlock the world of offers and coupons exclusively for you thank you!</strong>',
+};
+sgMail.send(msg);
+console.log(msg);
+
   const accountSid = process.env.TWILIO_SID;
   const authToken = process.env.TWILIO_TOKEN;
   const client = require('twilio')(accountSid, authToken);
@@ -152,8 +164,8 @@ else {
     .then(messages => {
       console.log(messages.sid);
       res.render("dashboard",{
-        title:"List of properties",
-          headingInfo:"Properties ready to rent",
+        title:"Your Dashboard",
+          headingInfo:"View upcoming trips",
           room : model.getallListingRoom()
       })
     })
