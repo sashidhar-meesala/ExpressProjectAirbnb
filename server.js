@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const exphbs  = require('express-handlebars');
+const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload');
 //const model = require("./models/room");
 require('dotenv').config({path:'./config.env'});
 app.engine('handlebars', exphbs());
@@ -8,7 +10,11 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 const bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
+
 app.use(bodyParser.urlencoded({ extended: false }))
+
+
+app.use(fileUpload());
 //general controller
 const generalController=require("./controllers/general");
 /*const loginController= require("./controllers/login");
@@ -185,6 +191,27 @@ app.get('/explore', function (req, res) {
       room : model.getallListingRoom()
   })
 })*/
+app.use((req,res,next)=>{
+
+  if(req.query.method=="PUT")
+  {
+      req.method="PUT"
+  }
+
+  else if(req.query.method=="DELETE")
+  {
+      req.method="DELETE"
+  }
+
+  next();
+})
+
+
+mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=>{
+    console.log(`Connected to MongoDB Database`);
+})
+.catch(err=>console.log(`Error occured when connecting to database ${err}`));
 
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;

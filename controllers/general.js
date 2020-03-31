@@ -1,15 +1,43 @@
 var express = require('express')
 var router = express.Router()
-const model = require("../models/room");
+//const model = require("../models/room");
+const userModel = require("../models/user");
+const roomModel=require("../models/rooms");
+const path = require("path");
+
+
+//HOMEPAGE
+
 router.get('/', function (req, res) {
-    res.render("homepage",{
-        title:"Home",
-        headingInfo:"HOMEPAGE",
-        randomContent:"bkjsbjbsajf",
-        room : model.getallFeaturedRooms()
-    })
+  roomModel.find({isFeatured:true})
+  .then((rooms)=>{
+      const filteredRoom =   rooms.map(room=>{
+
+              return {
+                  title:room.title,
+                  description:room.description,
+                  price:room.price,
+                  location:room.location,
+                  isFeatured:room.isFeatured,
+                  pic:room.pic
+                  
+              }
+      });
+
+      console.log(filteredRoom);
+
+      res.render("homepage",{
+         data : filteredRoom
+         
+      });
+
+  })
+  .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
   })
 
+
+
+//DASHBOARD
 
   router.get("/dashboard",(req,res)=>{
 
@@ -23,12 +51,122 @@ router.get('/', function (req, res) {
   });
 
 
+//ADMIN
+
+  router.get('/addroom', function (req, res) {
+    res.render("addroom",{
+        title:"admin",
+        
+    })
+  })
+
+  router.post("/addroombyAdmin",(req,res)=>{
+
+      const newRoom = 
+    {
+        title:req.body.title,
+        price:req.body.price,
+        description:req.body.description,
+        location:req.body.location,
+        isFeatured:req.body.yesno,
+        
+
+    }
+    console.log(newRoom)
+    const room = new roomModel(newRoom);
+    room.save()
+    .then((room)=>{
+
+      req.files.picture.name = `room_pic_${room._id}${path.parse(req.files.picture.name).ext}`;
+
+      req.files.picture.mv(`public/uploads/${req.files.picture.name}`)
+      .then(()=>{
+
+
+        roomModel.updateOne({_id:room._id},{
+              pic: req.files.picture.name
+          })
+          .then(()=>{
+              res.redirect('/getrooms')
+          })
+
+      })
+         
+    })
+    .catch(err=>console.log(`Error while inserting into the data ${err}`));
+
+
+
+     
+  
+  }) 
+    /*.then((room)=>{
+    req.files.picture.name = `pro_pic_${room._id}${path.parse(req.files.picture.name).ext}`;
+    req.files.picture.mv(`public/uploads/${req.files.picture.name}`)
+    .then(()=>{
+      roomModel.updateOne({_id:room._id},{
+          pic: req.files.picture.name
+          
+      })
+    console.log("room created");
+   
+  })
+  .catch(err=>console.log(`error while inserting : ${err}`));
+  }) })*/
+
+
+  router.get('/getrooms', (req, res)=> {
+
+        roomModel.find()
+        .then((rooms)=>{
+    
+    
+            //Filter out the information that you want from the array of documents that was returned into
+            //a new array
+    
+            //Array 300 documents meaning that the array has 300 elements 
+    
+      
+            const filteredRoom =   rooms.map(room=>{
+    
+                    return {
+                        title:room.title,
+                        description:room.description,
+                        price:room.price,
+                        location:room.location,
+                        isFeatured:room.isFeatured,
+                        pic:room.pic
+                        
+                    }
+            });
+    
+            console.log('rooms'+filteredRoom);
+    
+            res.render("viewrooms",{
+               data : filteredRoom,
+                         
+            });
+    
+        })
+        .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+    
+        
+        
+    })
+
+
+
+
+  //LOGIN
+
   router.get('/login', function (req, res) {
     res.render("login",{
         title:"login",
         headingInfo:"login page lets get started",
     })
   })
+
+
 
 
   router.post("/loginvalidation",(req,res)=>{
@@ -54,11 +192,21 @@ router.get('/', function (req, res) {
         messages : errors
       })
     }
+
+
     else{
-      res.render("dashboard")
+      userModel.find({ email: req.body.username},function (err, result) {
+
+        if (err) throw err;
+        console.log(result);
+        
+      });
+
     }
   })
 
+
+//REGISTER
 
   router.get('/register', function (req, res) {
     res.render("register",{
@@ -119,8 +267,25 @@ router.get('/', function (req, res) {
   })
 }
 else {
+
+  //insert into database
+  const newUser = 
+  {
+      firstName:req.body.fname,
+      lastName:req.body.lname,
+      email:req.body.email,
+      password:req.body.pwd,
+      phone:req.body.phone
+  }
+
+  const user = new userModel(newUser);
+  user.save()
+  .then(()=>{
+   res.redirect("dashboard");
+  })
+  .catch(err=>console.log(`error while inserting : ${err}`));
   
-  const sgMail = require('@sendgrid/mail');
+  /*const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const msg = {
   to: `${req.body.email}`,
@@ -151,20 +316,43 @@ console.log(msg);
       })
       .catch((err)=>{
           console.log(`Error ${err}`);
-      })
+      })*/
 }
 
 
   })
 
 
+
+//EXPLORE
   //const model = require("../models/room");
-router.get('/explore', function (req, res) {              
-    res.render("explore",{
-      title:"List of properties",
-        headingInfo:"Properties ready to rent",
-        room : model.getallListingRoom()
-    })
+router.get('/explore', function (req, res) {      
+  roomModel.find()
+  .then((rooms)=>{
+      const filteredRoom =   rooms.map(room=>{
+
+              return {
+                  title:room.title,
+                  description:room.description,
+                  price:room.price,
+                  location:room.location,
+                  isFeatured:room.rating,
+                  pic:room.pic
+                  
+              }
+      });
+
+      console.log(filteredRoom);
+
+      res.render("explore",{
+         data : filteredRoom
+         
+      });
+
+  })
+  .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+  
+
   })
 
 

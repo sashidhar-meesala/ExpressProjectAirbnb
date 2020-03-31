@@ -1,0 +1,23 @@
+<script src="https://kit.fontawesome.com/70195ad3d9.js" crossorigin="anonymous"></script>
+<div class="main-heading">
+    <h2 class="explore_heading" style="text-align: center;">Rooms you have added</h2>
+</div>
+
+<br>
+    <section class="places-block">
+        {{#each data}}
+        <article class="destination_x">
+            <p><img src="/uploads/{{this.pic}}" class="images" alt="something"></p>
+            <div class="content_x">
+            </div>
+            <p class="p-heading">{{this.title}}</p>
+             <p class="p-heading">{{this.description}}</p>
+            <p class="p-heading">{{this.location}}</p>
+              <p class="p-heading">featured: {{this.isFeatured}}</p>
+            <p>${{this.price}}/night</p>
+            <p>{{This.description}}</p>
+            <button type="submit" class="btn">edit</button>
+            <button type="submit" class="btn">delete</button>
+        </article>
+        {{/each}}
+    </section>

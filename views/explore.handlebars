@@ -5,12 +5,14 @@
 
 <br>
     <section class="places-block">
-        {{#each room}}
+        {{#each data}}
         <article class="destination_x">
-            <p><img src="{{this.imgURL}}" class="images" alt="something"></p>
+            <p><img src="/uploads/{{this.pic}}" class="images" alt="something"></p>
             <div class="content_x">
             </div>
             <p class="p-heading">{{this.title}}</p>
+            <p class="p-heading">{{this.description}}</p>
+            <p class="p-heading">{{this.location}}</p>
             <p>${{this.price}}/night</p>
             <p><i class="fa fa-star" aria-hidden="true"></i> {{this.rating}}(200) . Superhost<p></p>
             <div class="btn-center">

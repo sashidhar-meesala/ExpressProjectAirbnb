@@ -1,0 +1,33 @@
+<h2>Add Rooms</h2>
+
+    
+    <form method="POST" action="/addroombyAdmin" enctype="multipart/form-data">
+
+        <label>Title</label>
+        <input type="text" name="title" id="title"> <br><br>
+
+        <label>Price per night</label>
+        <input type="text" name="price" id="price"> <br><br>
+
+        <label>Room description</label>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label>Location</label>
+        <input type="text" name="location" id="location"> <br><br>
+
+
+        <label>Set as Featured</label>
+        <select name="yesno">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <br><br>
+
+        <label>File Upload</label>
+        <input type="file" name="picture" id="picture"> <br><br>
+
+        <br><br>
+
+        <input type="submit" value="Add Room">
+
+    </form>
