@@ -225,7 +225,7 @@ router.post('/locationsearch', (req, res)=> {
   // console.log(req.body.locations);
   if(req.body.locations == "none"){
 
-    res.redirect("/getrooms")
+    res.redirect("/explore")
 
   }
 
@@ -234,12 +234,6 @@ router.post('/locationsearch', (req, res)=> {
 
     roomModel.find()
     .then((rooms)=>{
-  
-  
-        //Filter out the information that you want from the array of documents that was returned into
-        //a new array
-  
-        //Array 300 documents meaning that the array has 300 elements 
   
   
         let filteredRoom =   rooms.filter(r => r.location == req.body.locations);
@@ -260,7 +254,7 @@ router.post('/locationsearch', (req, res)=> {
   
        // console.log('rooms'+filteredRoombyseacrh[0]);
   
-        res.render("viewrooms",{
+        res.render("explore",{
            data : filteredRoombyseacrh,
                      
         });
