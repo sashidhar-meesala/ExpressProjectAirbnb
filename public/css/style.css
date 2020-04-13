@@ -502,8 +502,26 @@ color: #fa0951;
 }
 
 
+/*styling for add room */
 
+.addroom{
+  text-align: center;
+  padding:2px;
+  margin-bottom: 5em;
+}
 
+input[type="file"] {
+  display: inline;
+}
+
+.navlink{
+  color: #0b4dad !important;
+}
+
+.explorenowGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
 @media (min-width: 769px) {
 	.header,

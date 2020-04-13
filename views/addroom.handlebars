@@ -1,8 +1,11 @@
-<h2>Add Rooms</h2>
 
-    
+<h3>Welcome,{{user.firstName}} {{user.lastName}}</h3>
+<a href="/getrooms" class="navlink">viewrooms</a>
+<a href="/logout" class="navlink">logout</a>
+
+<h2>Add Rooms</h2>  
     <form method="POST" action="/addroombyAdmin" enctype="multipart/form-data">
-
+        <div class="addroom">
         <label>Title</label>
         <input type="text" name="title" id="title"> <br><br>
 
@@ -14,20 +17,13 @@
 
         <label>Location</label>
         <input type="text" name="location" id="location"> <br><br>
-
-
         <label>Set as Featured</label>
         <select name="yesno">
             <option value="yes">Yes</option>
             <option value="no">No</option>
-        </select>
-        <br><br>
-
+        </select><br><br>
         <label>File Upload</label>
         <input type="file" name="picture" id="picture"> <br><br>
-
-        <br><br>
-
-        <input type="submit" value="Add Room">
-
+        <input type="submit" class="btn" value="Add Room">
+        </div>
     </form>

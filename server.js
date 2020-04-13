@@ -3,6 +3,7 @@ const app = express()
 const exphbs  = require('express-handlebars');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
+let session=require('express-session');
 //const model = require("./models/room");
 require('dotenv').config({path:'./config.env'});
 app.engine('handlebars', exphbs());
@@ -12,7 +13,20 @@ const bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
 
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use((req,res,next)=>{
 
+  if(req.query.method=="PUT")
+  {
+      req.method="PUT"
+  }
+
+  else if(req.query.method=="DELETE")
+  {
+      req.method="DELETE"
+  }
+
+  next();
+})
 
 app.use(fileUpload());
 //general controller
@@ -20,7 +34,17 @@ const generalController=require("./controllers/general");
 /*const loginController= require("./controllers/login");
 const registerController= require("./controllers/register");
 const roomController=require("./controllers/rooms");*/
+app.use(session({secret: `${process.env.SESSION_SECRET}` , resave: false,saveUninitialized: true}))
 
+  
+//custom middleware functions
+app.use((req,res,next)=>{
+
+    //res.locals.user is a global handlebars variable. This means that ever single handlebars file can access 
+    //that user variable
+    res.locals.user = req.session.user;
+    next();
+});
 app.use('/',generalController);
 /*
 app.use("/home",generalController);
@@ -191,20 +215,7 @@ app.get('/explore', function (req, res) {
       room : model.getallListingRoom()
   })
 })*/
-app.use((req,res,next)=>{
 
-  if(req.query.method=="PUT")
-  {
-      req.method="PUT"
-  }
-
-  else if(req.query.method=="DELETE")
-  {
-      req.method="DELETE"
-  }
-
-  next();
-})
 
 
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})

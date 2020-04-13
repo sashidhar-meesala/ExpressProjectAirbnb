@@ -1,61 +1,33 @@
-<h3 class="dashboard_heading"> My dashboard</h3>
-<p class="msg"> Welcome Back, Sashidhar!</p>
+<h3 class="dashboard_heading"> your dashboard</h3>
+<p class="msg"> Welcome Back, {{req.seesion.user.firstname}}, {{user.lastname}}</p>
 
    <article class="dashboardBio_gridItem">
       <h4>your Details</h4>
-        <p>sashidhar Meesala</p>
-        <p>Email : sashidharklu@gmail.com
-        </p>
-        <p>Billing Address:</p>
-        <p>520 The queensway, ON</p>
+        <p>{{user.firstname}}, {{user.lastname}}</p>
+        <p>{{user.email}}</p>
         <p><button class="btn-center"> Edit profile</button></p>
     </article>
 
 <section class="data">
 <section class="ubookings">
-<h3>Your upcoming Bookings</h3>
+<h3>Your cart</h3>
 <div class="places-block">
-    <div class="destination_x">
-     
-      <img class="images" src="/img/room3.jpg" alt="image">
-      
-      <div class="content_x">
-        <span>ENTIRE BUNGALOW · 3 BEDS | Point Boston Beach House</span>
-        <p class="p-heading">Entire Guest House <span class="heart-red"><i class="fas fa-heart"></i></span>
-        </p>
-        <p>1900$ </p>
-        <p> <i class="fa fa-star" aria-hidden="true"></i> 4.5 (200)<p>
-        <div class="btn-center">
-              <a href="#" class="btn" title="book">View Details</a>
-        </div>
-      </div>
-
-      </div>
-  </div>
+       {{#each data}}
+        <article class="destination_x">
+            <p><img src="/uploads/{{this.pic}}" class="images" alt="something"></p>
+            <div class="content_x">
+            </div>
+            <p class="p-heading">{{this.title}}</p>
+             <p class="p-heading">{{this.description}}</p>
+            <p class="p-heading">{{this.location}}</p>
+              <p class="p-heading">featured: {{this.isFeatured}}</p>
+            <p>${{this.price}}/night</p>
+            <p>{{This.description}}</p>
+            <button type="submit" class="btn"> <a href="/confirmroom/{{this.id}}">Confirm Booking</a></button>
+        </article>
+        {{/each}}
+</div>
 </section>
 
-<section class="pbookings">
-<h3>Your Previous Bookings</h3>
-<div class="places-block">
-    <div class="destination_x">
-     
-      <img class="images" src="/img/room3.jpg" alt="image">
-      
-      <div class="content_x">
-        <span>ENTIRE BUNGALOW · 3 BEDS | Point Boston Beach House</span>
-        <p class="p-heading">Entire Guest House <span class="heart-red"><i class="fas fa-heart"></i></span>
-        </p>
-        <p>1900$ </p>
-        <p> <i class="fa fa-star" aria-hidden="true"></i> 4.5 (200)<p>
-        <div class="btn-center">
-              <a href="#" class="btn" title="book">View Details</a>
-        </div>
-      </div>
-
-      </div>
-  </div>
-
-
-</section>
 </section>
 

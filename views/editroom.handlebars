@@ -1,0 +1,27 @@
+
+<a href="/logout" class="navlink">logout</a>
+
+<h2>edit destination</h2>  
+    <form method="POST" action="/updateroom/{{_id}}?method=PUT" enctype="multipart/form-data">
+        <div class="addroom">
+        <label>Title</label>
+        <input type="text" name="title" id="title" value="{{title}}"> <br><br>
+
+        <label>Price per night</label>
+        <input type="text" name="price" id="price" value="{{price}}"> <br><br>
+
+        <label>Room description</label>
+        <textarea id="description" name="description">{{description}}</textarea><br><br>
+
+        <label>Location</label>
+        <input type="text" name="location" id="location" value="{{location}} "><br><br>
+        <label>Set as Featured</label>
+        <select name="yesno">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select><br><br>
+        <label>File Upload</label>
+        <input type="file" name="picture" id="picture" value="{{pic}}"> <br><br>
+        <input type="submit" class="btn" value="Add Room">
+        </div>
+    </form>

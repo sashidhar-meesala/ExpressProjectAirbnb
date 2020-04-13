@@ -1,0 +1,45 @@
+<h2>booknow</h2>
+<p><img src="/uploads/{{pic}}" class="images" alt="something" style="text-align: center; width=70% height= "></p>
+<article class="explorenowGrid">
+<section class="content_x">
+            <p class="p-heading">{{title}}</p>
+            <p class="p-heading">{{description}}</p>
+            <p class="p-heading">{{location}}</p>
+            <p>${{price}}/night</p>
+            <p><i class="fa fa-star" aria-hidden="true"></i> {{rating}}(200) . Superhost<p></p>
+</section>
+<section>
+    <form  method="POST"  action="/reservenow/{{_id}}" class="bookingform">
+                <h3 style="margin-bottom: 0.5em; color:rgb(4, 97, 105); margin-bottom:1.2em">Reserve it now</h3>
+                <hr style="color: rgb(4, 97, 105);">
+
+                <div class="form_element">
+                    <label for="checkin"> Check-in</label>
+                    <input type="date" name="checkindate">
+                </div>
+
+                <div class="form_element">
+                    <label for="checkout"> Check-out</label>
+                    <input type="date" name="checkoutdate">
+                </div>
+                <div class="form_element">
+                    <label for="guests">Guests</label>
+                    <select name="guestselect">
+                        <option value="one">1</option>
+                        <option value="two">2</option>
+                        <option value="three">3</option>
+                        <option value="four">4</option>
+                        <option value="five">5</option>
+                        <option value="six">6</option>
+                        <option value="sixplus">6+</option>
+                    </select>
+                </div>
+                 <button type="submit" class="btn">Reserve</a></button>
+            </form>
+</section>
+
+
+
+</article>
+
+

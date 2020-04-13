@@ -3,8 +3,9 @@ var router = express.Router()
 //const model = require("../models/room");
 const userModel = require("../models/user");
 const roomModel=require("../models/rooms");
+const cartModel=require("../models/cart");
 const path = require("path");
-
+const bcrypt = require("bcryptjs");
 
 //HOMEPAGE
 
@@ -24,7 +25,7 @@ router.get('/', function (req, res) {
               }
       });
 
-      console.log(filteredRoom);
+      //console.log(filteredRoom);
 
       res.render("homepage",{
          data : filteredRoom
@@ -72,7 +73,7 @@ router.get('/', function (req, res) {
         
 
     }
-    console.log(newRoom)
+    //console.log(newRoom)
     const room = new roomModel(newRoom);
     room.save()
     .then((room)=>{
@@ -130,6 +131,7 @@ router.get('/', function (req, res) {
             const filteredRoom =   rooms.map(room=>{
     
                     return {
+                        id: room._id,
                         title:room.title,
                         description:room.description,
                         price:room.price,
@@ -140,7 +142,7 @@ router.get('/', function (req, res) {
                     }
             });
     
-            console.log('rooms'+filteredRoom);
+           // console.log('rooms'+filteredRoom);
     
             res.render("viewrooms",{
                data : filteredRoom,
@@ -154,7 +156,127 @@ router.get('/', function (req, res) {
         
     })
 
+//edit room controller
 
+router.get("/editroom/:id",(req,res)=>{
+
+  roomModel.findById(req.params.id)
+  .then((room)=>{
+
+      const {_id,title,description,price,location,isFeatured,pic} = room;
+      res.render("editroom",{
+          _id,
+          title,
+          description,
+          price,
+          location,
+          isFeatured,
+          pic  
+      })
+
+  })
+  .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+
+
+})
+
+//updateroom
+router.put("/updateroom/:id",(req,res)=>{
+
+  const room = 
+  {
+      title:req.body.title,
+      price:req.body.price,
+      description:req.body.description,
+      location:req.body.location,
+      isFeatured:req.body.yesno,
+      
+
+  }
+
+  roomModel.updateOne({_id:req.params.id},room)
+  .then(()=>{
+      res.redirect("/getrooms");
+  })
+  .catch(err=>console.log(`Error happened when updating data from the database :${err}`));
+
+
+});
+
+
+
+
+
+//Delete room 
+router.delete("/deleteroom/:id",(req,res)=>{
+    
+  roomModel.deleteOne({_id:req.params.id})
+  .then(()=>{
+      res.redirect("/getrooms");
+  })
+  .catch(err=>console.log(`Error happened when updating data from the database :${err}`));
+
+});
+
+
+//search by location
+
+router.post('/locationsearch', (req, res)=> {
+  // console.log(req.body.locations);
+  if(req.body.locations == "none"){
+
+    res.redirect("/getrooms")
+
+  }
+
+  else{
+
+
+    roomModel.find()
+    .then((rooms)=>{
+  
+  
+        //Filter out the information that you want from the array of documents that was returned into
+        //a new array
+  
+        //Array 300 documents meaning that the array has 300 elements 
+  
+  
+        let filteredRoom =   rooms.filter(r => r.location == req.body.locations);
+        //console.log(filteredRoom[0]);
+        const filteredRoombyseacrh=   filteredRoom.map(room=>{
+  
+                return {
+                    id: room._id,
+                    title:room.title,
+                    description:room.description,
+                    price:room.price,
+                    location:room.location,
+                    isFeatured:room.isFeatured,
+                    pic:room.pic
+                    
+                }
+        });
+  
+       // console.log('rooms'+filteredRoombyseacrh[0]);
+  
+        res.render("viewrooms",{
+           data : filteredRoombyseacrh,
+                     
+        });
+      })
+      .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+  }
+  
+
+
+
+  
+  
+})
+
+
+ 
 
 
   //LOGIN
@@ -172,7 +294,7 @@ router.get('/', function (req, res) {
   router.post("/loginvalidation",(req,res)=>{
 
     const errors= [];
-    console.log(req.body);
+  //  console.log(req.body);
     if(req.body.username =="")
     {
 
@@ -195,13 +317,62 @@ router.get('/', function (req, res) {
 
 
     else{
-      userModel.find({ email: req.body.username},function (err, result) {
+      
+       //Check to see if the user's email exist in the database
 
-        if (err) throw err;
-        console.log(result);
-        
-      });
+    const errors=[];
 
+    userModel.findOne({email:req.body.username})
+    .then((user)=>{
+     // console.log(req.body.username)
+        //console.log(user.isAdmin)
+        //there was no matching email
+        if(user==null)
+        {
+            errors.push("Sorry your email was not found in our database")
+
+            res.render("login",{
+              messages:errors
+            })
+        }
+
+        //There is a matching email
+        else
+        {
+            bcrypt.compare(req.body.password,user.password)
+            .then((isMatched)=>{
+
+                //password match
+                if(isMatched==true)
+                {
+                   req.session.user= user;
+                   if(user.isAdmin){
+                    res.redirect("addroom")
+                   }
+                   res.redirect("explore")
+                }
+
+                //no match
+                else
+                {
+                    errors.push("Sorry your password was wrong!")
+
+                    res.render("login",{
+                      messages:errors
+                    })
+                }
+
+            })
+            .catch(err=>console.log(`Error ${err}`));
+
+        }
+
+
+    })
+    .catch(err=>console.log(`Error ${err}`));
+
+
+    //res.redirect("/user/profile/")
     }
   })
 
@@ -221,7 +392,7 @@ router.get('/', function (req, res) {
     let alpha = /^[a-zA-Z]+$/;
     let email_test = /^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@{[a-zA-Z0-9_\-\.]+0\.([a-zA-Z]{2,5}){1,25})+)*$/;
     let pwd_test= new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
-    console.log(req.body);
+   // console.log(req.body);
     if(req.body.email == "")
     {
 
@@ -332,6 +503,7 @@ router.get('/explore', function (req, res) {
       const filteredRoom =   rooms.map(room=>{
 
               return {
+                   id: room._id,
                   title:room.title,
                   description:room.description,
                   price:room.price,
@@ -342,7 +514,7 @@ router.get('/explore', function (req, res) {
               }
       });
 
-      console.log(filteredRoom);
+     // console.log(filteredRoom);
 
       res.render("explore",{
          data : filteredRoom
@@ -355,6 +527,95 @@ router.get('/explore', function (req, res) {
 
   })
 
+//explorenow buttton is clicked
+  router.get("/explore/:id",(req,res)=>{
 
+    roomModel.findById(req.params.id)
+    .then((room)=>{
+  
+        const {_id,title,description,price,location,isFeatured,pic} = room;
+        res.render("explorenow",{
+            _id,
+            title,
+            description,
+            price,
+            location,
+            isFeatured,
+            pic  
+        })
+  
+    })
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+  
+  
+  });
+
+//reserve button is clicked , get room by id add the room to cart 
+
+router.post("/reservenow/:id",(req,res)=>{
+  roomModel.findById(req.params.id)
+  .then((room)=>{
+
+      const {_id,title,description,price,location,isFeatured,pic} = room;
+      console.log("here u goooo"+req.session.user._id);
+      const uId= req.session.user._id;
+
+      const newCart = 
+      {
+          title:title,
+          price:price,
+          description:description,
+          location:location,
+          pic:pic,
+          checkin:req.body.checkindate,
+          checkout:req.body.checkoutdate,
+          username:uId,
+         
+      }
+      const cart = new cartModel(newCart);
+      cart.save()
+      res.redirect("/getcart")
+
+  })
+  .catch(err=>console.log(`Error happened when saving to the database :${err}`));
+
+
+});
+
+router.get("/getcart",(req,res)=>{
+  //console.log(req);
+  cartModel.find()
+  .then((carts)=>{
+      let userCart=carts.filter(c=>c.username==req.session.user._id).map(cart=>{
+
+              return {
+                 
+                  title:cart.title,
+                  description:cart.description,
+                  price:cart.price,
+                  location:cart.location,
+                  pic:cart.pic,
+                  checkin:cart.checkin,
+                  checkout:cart.checkout
+                  
+              }
+      });
+      console.log(userCart);
+      res.render("dashboard",{
+         data : userCart,
+                   
+      });
+
+  })
+  .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+
+});
+
+
+  router.get("/logout",(req,res)=>{
+
+    req.session.destroy();
+    res.redirect("/login");
+});
 
 module.exports=router;

@@ -2,6 +2,18 @@
 <div class="main-heading">
     <h2 class="explore_heading" style="text-align: center;">Top-Rated Places To Stay</h2>
 </div>
+<form method="POST" action="/locationsearch">
+ <label for="search">search by location:</label>
+<select id="locations" name="locations">
+   <option value="none" selected > All locations</option> 
+  {{#each data}}
+  <option  name="locations" value="{{this.location}}">{{this.location}}</option>
+  {{/each}}
+  <input type="submit" value="Search">
+</select> 
+
+
+</form>
 
 <br>
     <section class="places-block">
@@ -16,7 +28,7 @@
             <p>${{this.price}}/night</p>
             <p><i class="fa fa-star" aria-hidden="true"></i> {{this.rating}}(200) . Superhost<p></p>
             <div class="btn-center">
-                        <a href="#" class="btn" title="book">Explore Now!</a>
+                        <a href="/explore/{{this.id}}" class="btn" title="book">Explore Now!</a>
                     </div>
         </article>
         {{/each}}
