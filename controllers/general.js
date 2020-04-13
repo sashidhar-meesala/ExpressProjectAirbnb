@@ -27,7 +27,7 @@ router.get('/', function (req, res) {
 
       //console.log(filteredRoom);
 
-      res.render("homepage",{
+      res.render("general/homepage",{
          data : filteredRoom
          
       });
@@ -42,7 +42,7 @@ router.get('/', function (req, res) {
 
   router.get("/dashboard",(req,res)=>{
 
-    res.render("dashboard",{
+    res.render("user/dashboard",{
         title: "Dashboard Page",
         headingInfo : "Dashboard Page"
   
@@ -55,7 +55,7 @@ router.get('/', function (req, res) {
 //ADMIN
 
   router.get('/addroom', function (req, res) {
-    res.render("addroom",{
+    res.render("admin/addroom",{
         title:"admin",
         
     })
@@ -144,7 +144,7 @@ router.get('/', function (req, res) {
     
            // console.log('rooms'+filteredRoom);
     
-            res.render("viewrooms",{
+            res.render("admin/viewrooms",{
                data : filteredRoom,
                          
             });
@@ -164,7 +164,7 @@ router.get("/editroom/:id",(req,res)=>{
   .then((room)=>{
 
       const {_id,title,description,price,location,isFeatured,pic} = room;
-      res.render("editroom",{
+      res.render("admin/editroom",{
           _id,
           title,
           description,
@@ -254,7 +254,7 @@ router.post('/locationsearch', (req, res)=> {
   
        // console.log('rooms'+filteredRoombyseacrh[0]);
   
-        res.render("explore",{
+        res.render("general/explore",{
            data : filteredRoombyseacrh,
                      
         });
@@ -276,7 +276,7 @@ router.post('/locationsearch', (req, res)=> {
   //LOGIN
 
   router.get('/login', function (req, res) {
-    res.render("login",{
+    res.render("general/login",{
         title:"login",
         headingInfo:"login page lets get started",
     })
@@ -304,7 +304,7 @@ router.post('/locationsearch', (req, res)=> {
 
     if(errors.length > 0)
     {
-      res.render("login",{
+      res.render("general/login",{
         messages : errors
       })
     }
@@ -325,7 +325,7 @@ router.post('/locationsearch', (req, res)=> {
         {
             errors.push("Sorry your email was not found in our database")
 
-            res.render("login",{
+            res.render("general/login",{
               messages:errors
             })
         }
@@ -351,7 +351,7 @@ router.post('/locationsearch', (req, res)=> {
                 {
                     errors.push("Sorry your password was wrong!")
 
-                    res.render("login",{
+                    res.render("general/login",{
                       messages:errors
                     })
                 }
@@ -374,7 +374,7 @@ router.post('/locationsearch', (req, res)=> {
 //REGISTER
 
   router.get('/register', function (req, res) {
-    res.render("register",{
+    res.render("general/register",{
       title:"User Registration",
         headingInfo:"register now",
     })
@@ -427,7 +427,7 @@ router.post('/locationsearch', (req, res)=> {
     
     if(reg_errors.length > 0 )
   {
-  res.render("register",{
+  res.render("general/register",{
       messages:reg_errors
   })
 }
@@ -446,7 +446,7 @@ else {
   const user = new userModel(newUser);
   user.save()
   .then(()=>{
-   res.redirect("dashboard");
+   res.redirect("user/dashboard");
   })
   .catch(err=>console.log(`error while inserting : ${err}`));
   
@@ -510,7 +510,7 @@ router.get('/explore', function (req, res) {
 
      // console.log(filteredRoom);
 
-      res.render("explore",{
+      res.render("general/explore",{
          data : filteredRoom
          
       });
@@ -528,7 +528,7 @@ router.get('/explore', function (req, res) {
     .then((room)=>{
   
         const {_id,title,description,price,location,isFeatured,pic} = room;
-        res.render("explorenow",{
+        res.render("general/explorenow",{
             _id,
             title,
             description,
@@ -595,7 +595,7 @@ router.get("/getcart",(req,res)=>{
               }
       });
       console.log(userCart);
-      res.render("dashboard",{
+      res.render("user/dashboard",{
          data : userCart,
                    
       });
@@ -609,7 +609,7 @@ router.get("/getcart",(req,res)=>{
   router.get("/logout",(req,res)=>{
 
     req.session.destroy();
-    res.redirect("/login");
+    res.redirect("general/login");
 });
 
 module.exports=router;
