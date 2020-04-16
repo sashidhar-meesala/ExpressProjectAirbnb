@@ -1,6 +1,9 @@
 <div class="login-page">
     <div class="form">
     <form class="login-form" method="POST" action="/loginvalidation">
+      {{#each confirmation}}
+      <div class="errors" style="font-size: larger;">{{this}}</div>
+      {{/each}}
     <p style="color: rgb(72, 80, 153);">Sign-in using Facebook or google</p>
     <p>(or)</p>
     <hr>

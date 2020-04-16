@@ -10,6 +10,7 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 const bodyParser = require('body-parser');
+
 // parse application/x-www-form-urlencoded
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -40,25 +41,17 @@ app.use(session({secret: `${process.env.SESSION_SECRET}` , resave: false,saveUni
 //custom middleware functions
 app.use((req,res,next)=>{
 
-    //res.locals.user is a global handlebars variable. This means that ever single handlebars file can access 
-    //that user variable
-    res.locals.user = req.session.user;
-    next();
-});
+  
+  res.locals.user= req.session.userInfo;
 
-function requireLogin(req, res, next) {
-  if (req.session.loggedIn) {
-    next(); // allow the next route to run
-  } else {
-    // require the user to log in
-    res.redirect("/login"); // or render a form, etc.
-  }
-}
+  next();
+})
+
 
 
 app.use('/',generalController);
 app.use('/general',generalController);
-app.use('/admin',requireLogin,generalController);
+app.use('/admin',generalController);
 app.use('/user',generalController);
 /*
 app.use("/home",generalController);

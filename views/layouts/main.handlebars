@@ -22,17 +22,35 @@
               <h1 class="logo"><a href="/"><i class="fab fa-airbnb icon-4x"></i>Airbnb</a></h1>
         </section>
         <section class="navGrid">
-            <article class="navGridItems">
+            {{#if user }}
+                    <article class="navGridItems">
+                <a href="/logout">Logout</a></li>
+            </article>
+            {{else}}
+                   <article class="navGridItems">
                 <a href="/register">Register</a></li>
-            </article class="navGridItems">
+            </article>
+             <article class="navGridItems">
             <a href="/login">login</a>
+                </article>
+            {{/if}}
+            {{#if user.isAdmin}}
+             <article class="navGridItems">
+            <a href="/getrooms">View Rooms </a>
+                </article>
+                  <article class="navGridItems">
+            <a href="/addroom">Add More rooms</a>
+                </article>
+            {{else}}
+             <article class="navGridItems">
+                <a href="/getcart">My Dashboard</a></li>
+            </article>
+
+            {{/if}}
                 
             </article>
             <article class="navGridItems">
                 <a href="/explore">Explore</a></li>
-            </article>
-            <article class="navGridItems">
-                <a href="#">Contact</a></li>
             </article>
         </section>
   </header> 

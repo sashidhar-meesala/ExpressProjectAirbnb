@@ -1,9 +1,11 @@
 <script src="https://kit.fontawesome.com/70195ad3d9.js" crossorigin="anonymous"></script>
 <div class="main-heading">
     <h2 class="explore_heading" style="text-align: center;">Rooms you have added</h2>
+
     
 <form method="POST" action="/locationsearch">
  <label for="search">search by location:</label>
+     
 <select id="locations" name="locations">
    <option value="none" selected > All locations</option> 
   {{#each data}}
@@ -11,9 +13,8 @@
   {{/each}}
   <input type="submit" value="Search">
 </select> 
-
-
 </form>
+<a href="/addroom" class="secondlink" style="text-align: center;">Add more roooms</a
 
 </div>
 

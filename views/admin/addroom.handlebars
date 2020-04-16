@@ -1,7 +1,5 @@
 
-<h3>Welcome,{{user.firstName}} {{user.lastName}}</h3>
-<a href="/getrooms" class="navlink">viewrooms</a>
-<a href="/logout" class="navlink">logout</a>
+<a href="/getrooms" class="secondlink">View Rooms Added </a>
 
 <h2>Add Rooms</h2>  
     <form method="POST" action="/addroombyAdmin" enctype="multipart/form-data">
@@ -23,7 +21,7 @@
             <option value="no">No</option>
         </select><br><br>
         <label>File Upload</label>
-        <input type="file" name="picture" id="picture"> <br><br>
+        <input type="file" accept="image/*" name="picture" id="picture"> <br><br>
         <input type="submit" class="btn" value="Add Room">
         </div>
     </form>

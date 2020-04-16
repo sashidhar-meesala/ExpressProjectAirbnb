@@ -6,6 +6,12 @@ const roomModel=require("../models/rooms");
 const cartModel=require("../models/cart");
 const path = require("path");
 const bcrypt = require("bcryptjs");
+const isAuthenticated = require("../middleware/auth");
+const getAdmin=require("../middleware/admin");
+const bodyParser = require('body-parser');
+
+// parse application/x-www-form-urlencoded
+
 
 //HOMEPAGE
 
@@ -40,9 +46,9 @@ router.get('/', function (req, res) {
 
 //DASHBOARD
 
-  router.get("/dashboard",(req,res)=>{
-
-    res.render("user/dashboard",{
+  router.get("/dashboard",isAuthenticated,getAdmin,(req,res)=>{
+   console.log("iam gere");
+    res.redirect("/getcart",{
         title: "Dashboard Page",
         headingInfo : "Dashboard Page"
   
@@ -54,14 +60,23 @@ router.get('/', function (req, res) {
 
 //ADMIN
 
-  router.get('/addroom', function (req, res) {
+router.get('/admindash',isAuthenticated,getAdmin,function (req, res) {
+  res.render("admin/admindash",{
+      title:"admin",
+      
+  })
+  
+})
+
+
+  router.get('/addroom',isAuthenticated,getAdmin,function (req, res) {
     res.render("admin/addroom",{
         title:"admin",
         
     })
   })
 
-  router.post("/addroombyAdmin",(req,res)=>{
+  router.post("/addroombyAdmin",isAuthenticated,getAdmin,(req,res)=>{
 
       const newRoom = 
     {
@@ -116,8 +131,8 @@ router.get('/', function (req, res) {
   }) })*/
 
 
-  router.get('/getrooms', (req, res)=> {
-
+  router.get('/getrooms',isAuthenticated,getAdmin,(req, res)=> {
+      
         roomModel.find()
         .then((rooms)=>{
     
@@ -158,7 +173,7 @@ router.get('/', function (req, res) {
 
 //edit room controller
 
-router.get("/editroom/:id",(req,res)=>{
+router.get("/editroom/:id",isAuthenticated,getAdmin,(req,res)=>{
 
   roomModel.findById(req.params.id)
   .then((room)=>{
@@ -181,7 +196,7 @@ router.get("/editroom/:id",(req,res)=>{
 })
 
 //updateroom
-router.put("/updateroom/:id",(req,res)=>{
+router.put("/updateroom/:id",isAuthenticated,(req,res)=>{
 
   const room = 
   {
@@ -208,7 +223,7 @@ router.put("/updateroom/:id",(req,res)=>{
 
 
 //Delete room 
-router.delete("/deleteroom/:id",(req,res)=>{
+router.delete("/deleteroom/:id",isAuthenticated,getAdmin,(req,res)=>{
     
   roomModel.deleteOne({_id:req.params.id})
   .then(()=>{
@@ -323,7 +338,7 @@ router.post('/locationsearch', (req, res)=> {
         //there was no matching email
         if(user==null)
         {
-            errors.push("Sorry your email was not found in our database")
+            errors.push("Sorry your email or/and password was wrong!")
 
             res.render("general/login",{
               messages:errors
@@ -339,17 +354,18 @@ router.post('/locationsearch', (req, res)=> {
                 //password match
                 if(isMatched==true)
                 {
-                   req.session.user= user;
+                  req.session.userInfo = user;
+                  console.log("session has been created" + req.session.userInfo._id);
                    if(user.isAdmin){
-                    res.redirect("addroom")
+                    res.redirect("/admindash")
                    }
-                   res.redirect("explore")
+                   res.redirect("/getcart")
                 }
 
                 //no match
                 else
                 {
-                    errors.push("Sorry your password was wrong!")
+                    errors.push("Sorry your email or/and password was wrong!")
 
                     res.render("general/login",{
                       messages:errors
@@ -446,7 +462,13 @@ else {
   const user = new userModel(newUser);
   user.save()
   .then(()=>{
-   res.redirect("user/dashboard");
+    req.session.userInfo = user;
+    console.log(req.session.userInfo);
+    let confirmation=[];
+    confirmation.push("You have registered Successfully please login Now");
+   res.render("general/Login",{
+    confirmation
+   });
   })
   .catch(err=>console.log(`error while inserting : ${err}`));
   
@@ -540,19 +562,19 @@ router.get('/explore', function (req, res) {
   
     })
     .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
-  
-  
+    console.log("session was found" + req.session.userInfo._id);
   });
 
 //reserve button is clicked , get room by id add the room to cart 
 
 router.post("/reservenow/:id",(req,res)=>{
+  console.log("session was found in reserve now router" + req.session.userInfo._id);
   roomModel.findById(req.params.id)
   .then((room)=>{
 
-      const {_id,title,description,price,location,isFeatured,pic} = room;
-      console.log("here u goooo"+req.session.user._id);
-      const uId= req.session.user._id;
+      const {title,description,price,location,pic} = room;
+      //console.log("here u goooo"+req.session.user._id);
+      let uId= req.session.userInfo._id;
 
       const newCart = 
       {
@@ -571,16 +593,16 @@ router.post("/reservenow/:id",(req,res)=>{
       res.redirect("/getcart")
 
   })
-  .catch(err=>console.log(`Error happened when saving to the database :${err}`));
+  .catch(err=>console.log(`Error happened when saving to the cart database :${err}`));
 
 
 });
 
-router.get("/getcart",(req,res)=>{
-  //console.log(req);
+router.get("/getcart",isAuthenticated,(req,res)=>{
+  console.log("in here");
   cartModel.find()
   .then((carts)=>{
-      let userCart=carts.filter(c=>c.username==req.session.user._id).map(cart=>{
+      let userCart=carts.filter(c=>c.username==req.session.userInfo._id).map(cart=>{
 
               return {
                  

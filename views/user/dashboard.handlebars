@@ -1,10 +1,11 @@
 <h3 class="dashboard_heading"> your dashboard</h3>
-<p class="msg"> Welcome Back, {{req.seesion.user.firstname}}, {{user.lastname}}</p>
+<p class="msg"> Welcome, {{user.firstName}}, {{user.lastName}}</p>
 
    <article class="dashboardBio_gridItem">
       <h4>your Details</h4>
-        <p>{{user.firstname}}, {{user.lastname}}</p>
-        <p>{{user.email}}</p>
+        <p>Name: {{user.firstName}}, {{user.lastName}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Phone : {{user.phone}}</p>
         <p><button class="btn-center"> Edit profile</button></p>
     </article>
 
@@ -20,14 +21,21 @@
             <p class="p-heading">{{this.title}}</p>
              <p class="p-heading">{{this.description}}</p>
             <p class="p-heading">{{this.location}}</p>
-              <p class="p-heading">featured: {{this.isFeatured}}</p>
             <p>${{this.price}}/night</p>
-            <p>{{This.description}}</p>
-            <button type="submit" class="btn"> <a href="/confirmroom/{{this.id}}">Confirm Booking</a></button>
+            <p class="p-heading">check in : {{this.checkin}}</p>
+            <p class="p-heading">check out : {{this.checkin}}</p>
+            <button type="button" class="btn"> Confirm Booking</button>
         </article>
         {{/each}}
 </div>
 </section>
 
 </section>
+  <h2>
+    Terms and conditions
+  </h2>
+  <p>
+    All Airbnb users – guests and hosts – must be at least 18 years old. Each Airbnb user is only allowed to have one account. If you try to have more than one account, or provide any false information in your account, Airbnb will probably ban you.
 
+This gets slightly more complicated thanks to Airbnb’s Facebook integration, which allows users to sign up using their Facebook login. When you do this, it will immediately pull certain information – name, age, email address – in from Facebook, so make sure all of this stuff is legally accurate before using Facebook to sign up for Airbnb.
+  </p>
