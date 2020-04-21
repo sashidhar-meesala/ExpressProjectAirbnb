@@ -466,7 +466,7 @@ else {
     console.log(req.session.userInfo);
     let confirmation=[];
     confirmation.push("You have registered Successfully please login Now");
-   res.render("general/Login",{
+   res.render("general/login",{
     confirmation
    });
   })
