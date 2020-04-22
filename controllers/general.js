@@ -196,7 +196,7 @@ router.get("/editroom/:id",isAuthenticated,getAdmin,(req,res)=>{
 })
 
 //updateroom
-router.put("/updateroom/:id",isAuthenticated,(req,res)=>{
+router.put("/updateroom/:id",isAuthenticated,getAdmin,(req,res)=>{
 
   const room = 
   {
